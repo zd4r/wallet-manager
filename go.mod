@@ -7,8 +7,8 @@ require (
 	github.com/ethereum/go-ethereum v1.13.8
 	github.com/golang-migrate/migrate/v4 v4.17.0
 	github.com/mattn/go-sqlite3 v1.14.19
+	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8
 	github.com/pressly/goose/v3 v3.17.0
-	golang.design/x/clipboard v0.7.0
 	golang.org/x/term v0.15.0
 )
 
@@ -52,7 +52,6 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa // indirect
-	golang.org/x/exp/shiny v0.0.0-20231219180239-dc181d75b848 // indirect
 	golang.org/x/image v0.11.0 // indirect
 	golang.org/x/mobile v0.0.0-20230531173138-3c911d8e3eda // indirect
 	golang.org/x/net v0.19.0 // indirect

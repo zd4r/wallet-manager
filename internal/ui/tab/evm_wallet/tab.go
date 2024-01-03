@@ -10,6 +10,7 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/pkg/browser"
 	evmWalletModel "github.com/zd4r/wallet-manager/internal/model/evm_wallet"
 )
 
@@ -85,6 +86,17 @@ func (t *Tab) Build(ctx context.Context) (*fyne.Container, error) {
 			}),
 			widget.NewToolbarAction(theme.ContentCopyIcon(), func() {
 				t.mainWindow.Clipboard().SetContent(walletList[id].Address)
+			}),
+			widget.NewToolbarAction(theme.MailAttachmentIcon(), func() {
+				if err := browser.OpenURL(
+					fmt.Sprintf("https://etherscan.io/address/%s", walletList[id].Address),
+				); err != nil {
+					dialog.ShowInformation(
+						"error occurred",
+						err.Error(),
+						t.mainWindow,
+					)
+				}
 			}),
 		)
 	}
