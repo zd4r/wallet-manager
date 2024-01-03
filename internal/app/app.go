@@ -68,6 +68,7 @@ func (a *App) Run() error {
 	if err != nil {
 		return err
 	}
+	defer storage.Stop()
 
 	// init wallet service
 	evmWalletSrv := evmWalletService.New(
