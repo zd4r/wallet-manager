@@ -62,7 +62,10 @@ func (t *Tab) Build(ctx context.Context) (*fyne.Container, error) {
 	buildWalletToolbar := func(id int) *widget.Toolbar {
 		return widget.NewToolbar(
 			widget.NewToolbarAction(theme.DeleteIcon(), func() {
-				// TODO: add pop-up alert
+				if len(walletList) <= id {
+					return
+				}
+
 				if err = t.walletService.DeleteByID(ctx, walletList[id].ID); err != nil {
 					dialog.ShowInformation(
 						"error occurred",
