@@ -3,6 +3,7 @@ package evm_wallet
 import (
 	"context"
 	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/ethereum/go-ethereum/accounts"
@@ -75,14 +76,12 @@ func (s *Service) DeleteByID(ctx context.Context, id int64) error {
 }
 
 func (s *Service) CheckAccess() error {
-	for _, account := range s.keyStore.Accounts() {
-		if err := s.keyStore.TimedUnlock(
-			account,
-			s.passphraseStore.Get(),
-			1*time.Microsecond,
-		); err != nil {
-			return fmt.Errorf("failed to unlock keystore: %w", err)
-		}
+	if err := s.keyStore.TimedUnlock(
+		s.keyStore.Accounts()[rand.Intn(len(s.keyStore.Accounts()))],
+		s.passphraseStore.Get(),
+		1*time.Microsecond,
+	); err != nil {
+		return fmt.Errorf("failed to unlock keystore: %w", err)
 	}
 
 	return nil
